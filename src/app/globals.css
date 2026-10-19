@@ -48,6 +48,12 @@
     outline-offset: 2px;
   }
 
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
   @supports (scrollbar-width: thin) {
     html {
       scrollbar-width: thin;

@@ -63,6 +63,14 @@ export function SearchOverlay({
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
+              onKeyDown={(event) => {
+                // A focused search input would otherwise consume Escape to
+                // clear itself, leaving the modal open. Close it in one press.
+                if (event.key === "Escape") {
+                  event.preventDefault();
+                  handleClose();
+                }
+              }}
               placeholder="Search by name, colour, or category"
               autoFocus
               autoComplete="off"

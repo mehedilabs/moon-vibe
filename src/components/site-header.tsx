@@ -55,6 +55,8 @@ export function SiteHeader() {
               type="button"
               onClick={() => setMobileOpen(true)}
               aria-label="Open menu"
+              aria-haspopup="dialog"
+              aria-expanded={mobileOpen}
               className="-ml-2 inline-flex size-11 items-center justify-center rounded-full transition-colors hover:bg-charcoal/6 lg:hidden"
             >
               <Menu className="size-5" aria-hidden="true" />
@@ -87,6 +89,8 @@ export function SiteHeader() {
               type="button"
               onClick={() => setSearchOpen(true)}
               aria-label="Search products"
+              aria-haspopup="dialog"
+              aria-expanded={searchOpen}
               className="inline-flex size-11 items-center justify-center rounded-full transition-colors hover:bg-charcoal/6"
             >
               <Search className="size-[19px]" aria-hidden="true" />
@@ -116,6 +120,8 @@ export function SiteHeader() {
               type="button"
               onClick={() => setCartOpen(true)}
               aria-label={`Shopping bag${cartCount > 0 ? ` (${cartCount} items)` : ""}`}
+              aria-haspopup="dialog"
+              aria-expanded={cartOpen}
               className="relative inline-flex size-11 items-center justify-center rounded-full transition-colors hover:bg-charcoal/6"
             >
               <ShoppingBag className="size-[19px]" aria-hidden="true" />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { ChevronRight } from "lucide-react";
 import { ProductGallery } from "@/components/product-gallery";
 import { ProductGrid } from "@/components/product-grid";
@@ -40,7 +41,15 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
+export default function ProductPage({ params }: ProductPageProps) {
+  return (
+    <Suspense fallback={<ProductPageSkeleton />}>
+      <ProductContent params={params} />
+    </Suspense>
+  );
+}
+
+async function ProductContent({ params }: ProductPageProps) {
   const { slug } = await params;
   const product = getProductBySlug(slug);
 
@@ -122,7 +131,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   <ul className="space-y-2 text-sm leading-6 text-charcoal/65">
                     {product.details.map((detail) => (
                       <li key={detail} className="flex gap-2.5">
-                        <span aria-hidden="true" className="mt-2 size-1 shrink-0 rounded-full bg-olive" />
+                        <span
+                          aria-hidden="true"
+                          className="mt-2 size-1 shrink-0 rounded-full bg-olive"
+                        />
                         {detail}
                       </li>
                     ))}
@@ -169,6 +181,34 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </Container>
         </section>
       ) : null}
+    </>
+  );
+}
+
+function ProductPageSkeleton() {
+  return (
+    <>
+      <Container className="py-5 sm:py-6">
+        <div className="h-3 w-56 animate-pulse bg-beige/70" />
+      </Container>
+      <section className="border-y border-charcoal/10 bg-white/35">
+        <Container className="grid gap-10 py-8 sm:py-10 lg:grid-cols-[1.08fr_1fr] lg:gap-16 lg:py-14">
+          <div className="flex flex-col-reverse gap-3 sm:flex-row sm:gap-4">
+            <div className="flex gap-2 sm:flex-col">
+              <div className="aspect-[3/4] w-16 animate-pulse bg-beige/70 sm:w-20" />
+              <div className="aspect-[3/4] w-16 animate-pulse bg-beige/70 sm:w-20" />
+            </div>
+            <div className="aspect-[4/5] flex-1 animate-pulse bg-beige/70 sm:aspect-[3/4]" />
+          </div>
+          <div className="max-w-xl space-y-4 pt-2">
+            <div className="h-3 w-40 animate-pulse bg-beige/70" />
+            <div className="h-12 w-4/5 animate-pulse bg-beige/70" />
+            <div className="h-5 w-24 animate-pulse bg-beige/70" />
+            <div className="h-20 w-full animate-pulse bg-beige/70" />
+            <div className="h-11 w-52 animate-pulse bg-beige/70" />
+          </div>
+        </Container>
+      </section>
     </>
   );
 }
