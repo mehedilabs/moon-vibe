@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Hind_Siliguri, Inter, Playfair_Display } from "next/font/google";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { StoreProvider } from "@/components/providers/store-provider";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -63,7 +66,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        {children}
+        <StoreProvider>
+          <SiteHeader />
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+          <SiteFooter />
+        </StoreProvider>
       </body>
     </html>
   );

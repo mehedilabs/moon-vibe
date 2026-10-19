@@ -5,6 +5,7 @@ export const siteConfig = {
   githubProfile: "https://github.com/mehedilabs",
   githubRepository: "https://github.com/mehedilabs/moon-vibe",
   author: "Mehedi Hasan",
+  copyrightYear: 2026,
 };
 
 export const primaryNavigation = [

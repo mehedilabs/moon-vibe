@@ -41,6 +41,12 @@ export const categories: Array<{ value: Category; label: string }> = [
   { value: "accessories", label: "Accessories" },
 ];
 
+export const categoryLabels: Record<Category, string> = {
+  women: "Women",
+  men: "Men",
+  accessories: "Accessories",
+};
+
 export const collections: Collection[] = [
   {
     slug: "quiet-hours",
