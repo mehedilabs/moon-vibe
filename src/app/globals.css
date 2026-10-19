@@ -1,26 +1,162 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ivory: #f7f5f0;
+  --color-charcoal: #20251f;
+  --color-olive: #66745a;
+  --color-beige: #e7dfd2;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-bangla: var(--font-hind), var(--font-inter), sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-olive);
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-olive);
+    outline-offset: 2px;
+  }
+
+  @supports (scrollbar-width: thin) {
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: rgb(32 37 31 / 0.3) transparent;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+dialog {
+  max-width: none;
+  max-height: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--color-charcoal);
+}
+
+dialog::backdrop {
+  background-color: rgb(32 37 31 / 0.45);
+  backdrop-filter: blur(3px);
+}
+
+dialog[open]::backdrop {
+  animation: backdrop-in 200ms ease-out both;
+}
+
+.sheet-panel-right {
+  animation: sheet-in-right 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.sheet-panel-left {
+  animation: sheet-in-left 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.dialog-panel {
+  animation: dialog-in 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-rise {
+  animation: rise 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-rise-late {
+  animation: rise 800ms cubic-bezier(0.22, 1, 0.36, 1) 160ms both;
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sheet-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes sheet-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
