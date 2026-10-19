@@ -45,13 +45,13 @@ export function Logo({
       onClick={onNavigate}
       aria-label="Moon Vibe — home"
       className={cn(
-        "group inline-flex items-center gap-2.5",
+        "group inline-flex items-center gap-2 sm:gap-2.5",
         light ? "text-ivory" : "text-charcoal",
         className,
       )}
     >
       <MoonMark className="size-5 transition-transform duration-500 group-hover:-rotate-12 sm:size-6" />
-      <span className="font-serif text-[1.35rem] leading-none tracking-[0.24em] sm:text-2xl">
+      <span className="font-serif text-[1.15rem] leading-none tracking-[0.18em] sm:text-2xl sm:tracking-[0.24em]">
         MOON VIBE
       </span>
     </Link>

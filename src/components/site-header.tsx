@@ -45,7 +45,7 @@ export function SiteHeader() {
   return (
     <>
       <div className="bg-charcoal px-4 py-2 text-center text-[0.62rem] font-medium uppercase tracking-[0.16em] text-ivory/80">
-        A front-end fashion demo — no real orders or payments
+        Fashion demo — no real orders or payments
       </div>
 
       <header className="sticky top-0 z-40 border-b border-charcoal/10 bg-ivory/95 backdrop-blur-md">

@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { NewsletterForm } from "@/components/newsletter-form";
 import { ProductGrid } from "@/components/product-grid";
 import { buttonStyles } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { formatPrice } from "@/lib/format";
 import {
   getFeaturedProducts,
   getNewArrivals,
@@ -40,62 +41,140 @@ const collectionTiles = [
   },
 ];
 
+const categoryLinks = [
+  {
+    href: "/women",
+    label: "Women",
+    count: products.filter((product) => product.category === "women").length,
+  },
+  {
+    href: "/men",
+    label: "Men",
+    count: products.filter((product) => product.category === "men").length,
+  },
+  {
+    href: "/shop?category=accessories",
+    label: "Accessories",
+    count: products.filter((product) => product.category === "accessories")
+      .length,
+  },
+];
+
 export default function HomePage() {
   const featured = getFeaturedProducts(4);
   const newArrivals = getNewArrivals(4);
+  const heroPiece = featured[0] ?? products[0];
 
   return (
     <>
       <section className="border-b border-charcoal/10">
-        <div className="grid lg:grid-cols-[1.02fr_1fr]">
-          <div className="flex items-center px-5 py-14 sm:px-8 sm:py-20 lg:min-h-[680px] lg:px-12 lg:py-24 xl:pl-[max(3rem,calc((100vw-1440px)/2+3rem))]">
-            <div className="max-w-xl animate-rise">
-              <p className="text-[0.65rem] font-medium uppercase tracking-[0.24em] text-olive">
-                Autumn / Winter 2026 — the demo edit
+        <div className="grid md:grid-cols-[1fr_0.96fr] lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="order-2 flex items-center px-5 py-9 sm:px-8 sm:py-12 md:order-1 md:px-8 md:py-12 lg:px-12 lg:py-16 xl:pl-[max(3rem,calc((100vw-1440px)/2+3rem))]">
+            <div className="w-full max-w-[34rem] animate-rise">
+              <p className="text-[0.6rem] font-medium uppercase tracking-[0.2em] text-olive sm:text-[0.62rem] sm:tracking-[0.21em] lg:text-[0.65rem] lg:tracking-[0.24em]">
+                New season
+                <span aria-hidden="true" className="mx-1.5 text-charcoal/25">
+                  ·
+                </span>
+                Women / Men / Accessories
               </p>
-              <h1 className="mt-6 font-serif text-[clamp(2.9rem,7vw,5.6rem)] leading-[0.98] tracking-[-0.035em]">
-                Dressed in quiet confidence.
+
+              <h1 className="mt-5 font-serif text-[clamp(2.75rem,5.8vw,5.2rem)] leading-[0.96] tracking-[-0.04em]">
+                Discover your
+                <span className="block">everyday style.</span>
               </h1>
-              <p className="mt-6 max-w-md text-sm leading-7 text-charcoal/65 sm:text-[0.95rem] sm:leading-8">
-                A considered wardrobe of modern silhouettes, warm neutrals, and
-                pieces that stay with you. Welcome to Moon Vibe.
+
+              <p className="mt-5 max-w-[30rem] text-sm leading-7 text-charcoal/65 sm:mt-6 sm:text-[0.95rem] sm:leading-8">
+                Shop the new-season edit of womenswear, menswear, and
+                accessories. Warm neutrals, natural textures, and easy
+                silhouettes for every day.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Link href="/shop" className={buttonStyles({ size: "lg" })}>
-                  Explore the collection
+
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
+                <Link
+                  href="/shop"
+                  className={buttonStyles({
+                    size: "lg",
+                    className: "w-full sm:w-auto",
+                  })}
+                >
+                  Shop Collection
                   <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>
                 <Link
                   href="/shop?sort=newest"
-                  className={buttonStyles({
-                    variant: "outline",
-                    size: "lg",
-                  })}
+                  className="group inline-flex min-h-11 w-full items-center justify-center gap-2 text-sm font-medium text-charcoal underline decoration-charcoal/25 underline-offset-4 transition-colors hover:decoration-charcoal sm:w-auto sm:justify-start"
                 >
-                  Shop new arrivals
+                  New Arrivals
+                  <ArrowUpRight
+                    className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  />
                 </Link>
               </div>
-              <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-charcoal/10 pt-5 text-[0.65rem] uppercase tracking-[0.16em] text-charcoal/45">
-                <span>{products.length} considered pieces</span>
-                <span aria-hidden="true" className="hidden h-3 w-px bg-charcoal/15 sm:block" />
-                <span>Front-end demo</span>
+
+              <div className="mt-8 border-t border-charcoal/10 pt-5 sm:mt-10">
+                <p className="text-[0.6rem] font-medium uppercase tracking-[0.2em] text-charcoal/40">
+                  Shop by category
+                </p>
+                <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-2">
+                  {categoryLinks.map((category) => (
+                    <Link
+                      key={category.href}
+                      href={category.href}
+                      className="group flex items-center gap-1.5 border-b border-transparent py-1.5 text-sm transition-colors hover:border-charcoal/20"
+                    >
+                      <span>{category.label}</span>
+                      <span className="text-[0.58rem] tabular-nums tracking-[0.08em] text-charcoal/35 transition-colors group-hover:text-olive">
+                        {String(category.count).padStart(2, "0")}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="relative min-h-[420px] sm:min-h-[560px] lg:min-h-[680px]">
+          <div className="relative order-1 h-[clamp(15rem,38svh,21rem)] overflow-hidden bg-beige md:order-2 md:h-auto md:min-h-[560px] lg:min-h-[660px] xl:min-h-[710px]">
             <Image
               src="/images/editorial/hero.jpg"
-              alt="Woman in a deep green checked coat on a quiet city street"
+              alt="Woman in a deep green checked coat carrying a leather bag on a quiet city street"
               fill
               priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-[center_28%]"
+              sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 56vw"
+              className="object-cover object-[center_20%] sm:object-[center_22%] lg:object-[center_28%]"
             />
-            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-charcoal/50 to-transparent" />
-            <p className="absolute bottom-5 left-5 text-[0.6rem] font-medium uppercase tracking-[0.22em] text-ivory/85 sm:bottom-7 sm:left-8">
-              The Quiet Hours edit — look 01
-            </p>
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-charcoal/40 to-transparent" />
+
+            <Link
+              href={`/product/${heroPiece.slug}`}
+              className="group absolute inset-x-4 bottom-4 flex items-center gap-3 border border-ivory/70 bg-ivory/95 p-3 shadow-[0_16px_40px_rgba(32,37,31,0.18)] backdrop-blur-md transition-colors hover:bg-ivory sm:bottom-6 sm:left-auto sm:right-6 sm:w-[19rem] sm:p-4"
+            >
+              <span className="relative aspect-[3/4] w-12 shrink-0 overflow-hidden bg-beige sm:w-14">
+                <Image
+                  src={heroPiece.images[0].src}
+                  alt={heroPiece.images[0].alt}
+                  fill
+                  sizes="56px"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-[0.55rem] font-medium uppercase tracking-[0.18em] text-olive">
+                  Featured piece
+                </span>
+                <span className="mt-1 block truncate font-serif text-[0.95rem] leading-snug tracking-[-0.01em] sm:text-base">
+                  {heroPiece.name}
+                </span>
+                <span className="mt-0.5 block text-xs tabular-nums text-charcoal/55">
+                  {formatPrice(heroPiece.price)}
+                </span>
+              </span>
+              <ArrowUpRight
+                className="size-4 shrink-0 text-charcoal/45 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-charcoal"
+                aria-hidden="true"
+              />
+            </Link>
           </div>
         </div>
       </section>

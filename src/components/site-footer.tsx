@@ -36,8 +36,8 @@ export function SiteFooter() {
   return (
     <footer className="mt-auto bg-charcoal text-ivory">
       <Container className="py-14 sm:py-16">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.7fr_repeat(3,1fr)] lg:gap-12">
-          <div className="max-w-sm">
+        <div className="grid grid-cols-3 gap-x-3 gap-y-10 md:grid-cols-2 lg:grid-cols-[1.7fr_repeat(3,1fr)] lg:gap-12">
+          <div className="col-span-3 max-w-sm md:col-span-2 lg:col-span-1">
             <Logo light />
             <p className="mt-5 text-sm leading-7 text-ivory/65">
               A considered edit of modern clothing and accessories, built as a
@@ -62,9 +62,8 @@ export function SiteFooter() {
         <div className="mt-12 border-t border-ivory/15 pt-6">
           <p className="max-w-2xl text-[0.68rem] leading-5 text-ivory/45">
             Moon Vibe is a demonstration storefront. Product data, account
-            access, cart, wishlist, and checkout are front-end only. No
-            payments are processed and no customer or order data is sent to a
-            server.
+            access, cart, wishlist, and checkout are front-end only. No payments
+            are processed and no customer or order data is sent to a server.
           </p>
           <div className="mt-5 flex flex-col justify-between gap-3 text-[0.65rem] uppercase tracking-[0.14em] text-ivory/40 sm:flex-row sm:items-center">
             <p>© {siteConfig.copyrightYear} Moon Vibe — demo project</p>
