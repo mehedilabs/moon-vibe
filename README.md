@@ -1,4 +1,6 @@
-# Moon Vibe
+# Moon Vibe Fashion
+
+[🛍️ **Visit Moon Vibe Fashion — Live Demo ↗**](https://moon-vibe-fashion.vercel.app/)
 
 A front-end fashion storefront demo built with Next.js, React, TypeScript, and Tailwind CSS. Moon Vibe is a calm, editorial shop for a curated edit of clothing and accessories: warm ivory surfaces, charcoal type, olive accents, and quiet typography.
 
@@ -20,14 +22,14 @@ A front-end fashion storefront demo built with Next.js, React, TypeScript, and T
 
 ## Tech stack
 
-| Layer | Choice |
-| --- | --- |
-| Framework | Next.js 16.4.2 (App Router) |
-| UI | React 19.3 |
-| Language | TypeScript 5 |
-| Styling | Tailwind CSS 4 |
-| Icons | lucide-react |
-| Linting | ESLint 9 with `eslint-config-next` |
+| Layer     | Choice                             |
+| --------- | ---------------------------------- |
+| Framework | Next.js 16.4.2 (App Router)        |
+| UI        | React 19.3                         |
+| Language  | TypeScript 5                       |
+| Styling   | Tailwind CSS 4                     |
+| Icons     | lucide-react                       |
+| Linting   | ESLint 9 with `eslint-config-next` |
 
 The project uses Next.js Cache Components and partial prefetching. Product routes are generated from the local product catalogue; no server data source is required.
 
@@ -46,28 +48,28 @@ No environment variables, API keys, or external services are needed.
 
 ## Scripts
 
-| Command | Purpose |
-| --- | --- |
-| `npm run dev` | Start the development server with Turbopack |
-| `npm run build` | Create a production build |
-| `npm start` | Serve the production build |
-| `npm run lint` | Run ESLint |
+| Command             | Purpose                                            |
+| ------------------- | -------------------------------------------------- |
+| `npm run dev`       | Start the development server with Turbopack        |
+| `npm run build`     | Create a production build                          |
+| `npm start`         | Serve the production build                         |
+| `npm run lint`      | Run ESLint                                         |
 | `npm run typecheck` | Run the TypeScript compiler without emitting files |
 
 ## Routes
 
-| Route | Description |
-| --- | --- |
-| `/` | Homepage and editorial sections |
-| `/shop` | Full catalogue with search, filters, and sorting |
-| `/women`, `/men` | Category edits |
-| `/collections` | Collection index |
-| `/product/[slug]` | Product detail pages |
-| `/cart` | Shopping bag |
-| `/wishlist` | Saved pieces |
-| `/checkout` | Demo checkout and confirmation |
-| `/login`, `/signup` | Local demo account forms |
-| `/account` | Demo profile and session details |
+| Route               | Description                                      |
+| ------------------- | ------------------------------------------------ |
+| `/`                 | Homepage and editorial sections                  |
+| `/shop`             | Full catalogue with search, filters, and sorting |
+| `/women`, `/men`    | Category edits                                   |
+| `/collections`      | Collection index                                 |
+| `/product/[slug]`   | Product detail pages                             |
+| `/cart`             | Shopping bag                                     |
+| `/wishlist`         | Saved pieces                                     |
+| `/checkout`         | Demo checkout and confirmation                   |
+| `/login`, `/signup` | Local demo account forms                         |
+| `/account`          | Demo profile and session details                 |
 
 Useful catalogue examples:
 
@@ -103,10 +105,10 @@ The catalogue is defined in `src/lib/products.ts`. Each product has a stable ID,
 
 State is managed by `src/components/providers/store-provider.tsx` and persisted under these localStorage keys:
 
-| Key | Contents |
-| --- | --- |
-| `moonvibe.cart.v1` | Product IDs, selected sizes, and quantities |
-| `moonvibe.wishlist.v1` | Saved product IDs |
+| Key                        | Contents                                     |
+| -------------------------- | -------------------------------------------- |
+| `moonvibe.cart.v1`         | Product IDs, selected sizes, and quantities  |
+| `moonvibe.wishlist.v1`     | Saved product IDs                            |
 | `moonvibe.demo-profile.v1` | Display name, email, and optional avatar URL |
 | `moonvibe.demo-session.v1` | The email identifying the local demo session |
 
@@ -114,12 +116,12 @@ Clearing site data resets the demo. Passwords are never written to storage.
 
 ## Design tokens
 
-| Token | Value | Use |
-| --- | --- | --- |
-| Ivory | `#F7F5F0` | Page background |
-| Charcoal | `#20251F` | Primary text and dark surfaces |
-| Olive | `#66745A` | Accents, focus rings, and status text |
-| Beige | `#E7DFD2` | Soft surfaces and image placeholders |
+| Token    | Value     | Use                                   |
+| -------- | --------- | ------------------------------------- |
+| Ivory    | `#F7F5F0` | Page background                       |
+| Charcoal | `#20251F` | Primary text and dark surfaces        |
+| Olive    | `#66745A` | Accents, focus rings, and status text |
+| Beige    | `#E7DFD2` | Soft surfaces and image placeholders  |
 
 Typography: **Playfair Display** for display headings, **Inter** for interface and body copy, and **Hind Siliguri** for the Bangla brand line.
 
@@ -140,4 +142,4 @@ Interactive overlays use the native `<dialog>` element, which provides focus con
 
 ## Author
 
-Built by [Mehedi Hasan](https://github.com/mehedilabs).
+Built by [Mehedi Hasan](https://www.linkedin.com/in/mehedilabs) .
