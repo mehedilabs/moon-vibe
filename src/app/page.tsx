@@ -7,11 +7,7 @@ import { buttonStyles } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { formatPrice } from "@/lib/format";
-import {
-  getFeaturedProducts,
-  getNewArrivals,
-  products,
-} from "@/lib/products";
+import { getFeaturedProducts, getNewArrivals, products } from "@/lib/products";
 
 const collectionTiles = [
   {
@@ -20,8 +16,7 @@ const collectionTiles = [
     note: "Soft tailoring, fluid dresses",
     image: "/images/editorial/collection-women.jpg",
     alt: "Woman in a pale blue trench coat in a city square",
-    className:
-      "col-span-2 h-[360px] sm:h-[420px] md:col-span-5 md:h-[520px]",
+    className: "col-span-2 h-[360px] sm:h-[420px] md:col-span-5 md:h-[520px]",
   },
   {
     href: "/men",
@@ -144,6 +139,7 @@ export default function HomePage() {
               sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 56vw"
               className="object-cover object-[center_20%] sm:object-[center_22%] lg:object-[center_28%]"
             />
+            <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[22%] bg-gradient-to-r from-[#f7f5f0] via-[#f7f5f0]/60 to-transparent md:block" />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-charcoal/40 to-transparent" />
 
             <Link
